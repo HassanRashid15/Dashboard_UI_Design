@@ -1,0 +1,193 @@
+/* Custom Login Form Styles */
+
+.login-container {
+    background-color: #f4f4f9;
+    padding: 2rem;
+  }
+  
+  .login-box {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .login-form {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-content {
+    padding: 2rem;
+  }
+  
+  .login-title {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #2d3748;
+    text-align: center;
+  }
+  
+  .login-field {
+    margin-bottom: 1.25rem;
+  }
+  
+  .login-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #718096;
+  }
+  
+  .login-input {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    background-color: #edf2f7;
+    border: 1px solid transparent;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .login-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 1px #667eea;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .login-button {
+    padding: 0.75rem;
+    background-color: #667eea;
+    color: #ffffff;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .login-button:hover {
+    background-color: #5a67d8;
+  }
+  .password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .forgot-password {
+    margin-top: 1rem;
+    text-align: right;
+    font-size: 0.875rem;
+    color: #718096;
+    transition: color 0.15s ease-in-out;
+  }
+  
+  .forgot-password:hover {
+    color: #4a5568;
+    text-decoration: underline;
+  }
+  
+  .divider-or {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .google-signin {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 0.75rem;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .google-signin:hover {
+    background-color: #f7fafc;
+  }
+  
+  .google-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #edf2f7;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+  }
+  
+
+  .login-input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-right: 2.5rem; /* Makes space for the eye icon */
+    border-radius: 0.375rem;
+    background-color: #edf2f7;
+    border: 1px solid transparent;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 25px !important;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #718096;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .password-toggle:hover {
+    color: #4a5568;
+  }
+  
+  .password-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  /* Error message styling */
+  .login-error {
+    margin-top: 0.5rem;
+    color: #e53e3e;
+    font-size: 0.875rem;
+  }
+
+
+  .transition-opacity {
+    transition: opacity 0.3s ease;
+  }
+  
+  
+
+  .divider-or {
+    position: relative;
+    text-align: center;
+    margin: 1.5rem 0; /* Adjust spacing as needed */
+  }
+  
+  .divider-or::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #e5e7eb; /* Light gray color for the line */
+    z-index: 1;
+  }
+  
+  .divider-or span {
+    position: relative;
+    background-color: #fff; /* Ensure the background matches the form */
+    padding: 0 0.5rem; /* Add padding to make space for text */
+    z-index: 2;
+    color: #6b7280; /* Gray color for the text */
+  }
+  

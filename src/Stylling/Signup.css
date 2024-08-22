@@ -1,0 +1,51 @@
+
+  /* Transition for button hover effect */
+  .signup-button {
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .signup-button:hover {
+    background-color: #4f46e5; /* Slightly darker shade of Indigo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+  
+  /* Transition for error message appearance */
+  .signup-error {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .signup-error.opacity-100 {
+    opacity: 1;
+  }
+  
+  /* Password toggle button hover effect */
+  .password-toggle {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .password-toggle:hover {
+    color: #4f46e5; /* Change color on hover */
+  }
+  
+
+
+  
+  .signup-button {
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .signup-button:hover {
+    background-color: #4f46e5; /* Slightly darker shade of Indigo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transform: translateY(-2px); /* Lift effect */
+  }
+  .signup-error {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+  
+  .signup-error.opacity-100 {
+    opacity: 1;
+  }
+  

@@ -1,0 +1,14 @@
+.nav-custom{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+.navbar-button:hover{
+    background: #fff !important;
+    color: #5d5ced !important;
+    border: 1px solid #5d5ced !important;
+}
+.navbar-custom-page{
+    width: 100%;
+    max-width: 82% !important;
+    margin: auto;
+}

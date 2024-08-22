@@ -1,0 +1,220 @@
+
+.hero-section-layout-custom{
+    width: 100%;
+    max-width: 60.3% !important;
+    margin: auto;
+    padding: 0;
+}
+
+/* .hero-section-background-image{
+    min-height: calc(100vh - 64px);
+} */
+.feature-content {
+    position: relative;
+}
+.feature-content h2::before{
+    content: "";
+    position: absolute;
+    left: 49.5%;
+    top: 84%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    height: 4px;
+    width: 140px;
+    background: #5d5ced;
+}
+.grid-layout-custom{
+    max-width: 1120px !important;
+    width: 100%;
+}
+
+.hero-section-button a:hover{
+    background: #fff !important;
+    color: #5d5ced !important;
+    border: 1px solid #5d5ced !important; 
+}
+.feature-icon-content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;   
+}
+
+.feature-icon-content svg{
+    font-size: 54px;
+}
+.feature-icon-content h1{
+    font-size: 17px;
+    font-weight: 600;
+}
+.feature-icon-content h2{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+
+@media (max-width:767px){
+    .feature-content-parent {
+        max-width: 93%;
+        margin: auto !important;
+    }  
+}
+@media (min-width:768px) and (max-width:1024px){
+    .feature-content-parent {
+        max-width: 86%;
+    }  
+}
+@media (min-width:1025px) and (max-width:1170px){
+    .feature-content-parent {
+        max-width: 205px;
+        margin: auto;
+    }
+}
+
+
+.heading {
+    text-align: center;
+    color: #454343;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 70px;
+    text-transform: uppercase;
+}
+
+/* .white-heading is needed only if you require a white color for headings */
+.white-heading{
+    color: #ffffff;
+}
+
+/* Remove this if the decorative line below the heading is not needed */
+/* .heading:after, .white-heading:after {
+    content: ' ';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: 40px;
+    width: 180px;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    background: url(https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80);
+    background-repeat: no-repeat;
+    background-position: center;
+} */
+
+.heading span {
+    font-size: 18px;
+    display: block;
+    font-weight: 500;
+}
+
+/* .white-heading span is only needed if you want spans in white color */
+.white-heading span {
+    color: #ffffff;
+}
+
+/* Testimonial basic styling */
+.testimonial {
+    min-height: 375px;
+    position: relative;
+    background: url(https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Cursor styling if you're using a carousel for testimonials */
+#testimonial4 .carousel-inner:hover{
+  cursor: grab;
+}
+#testimonial4 .carousel-inner:active{
+  cursor: grabbing;
+}
+
+/* Carousel indicators styling */
+.testimonial4_indicators .carousel-indicators li{
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 100%;
+}
+.testimonial4_indicators .carousel-indicators .active{
+  background-color: #9dd3af;
+}
+
+/* Testimonial slide content */
+.testimonial4_slide img {
+    width: 136px;
+    height: 136px;
+    margin: auto;
+    display: block;
+    border-radius: 50%;
+    box-shadow: -6px 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.testimonial4_slide p {
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 40px 0 20px 0;
+}
+
+.testimonial4_slide h4 {
+  color: #ffffff;
+  font-size: 22px;
+}
+
+
+.testimonial-custom-layout{
+    margin-bottom: 70px;
+    margin-top: 25px;
+}
+.hero-section-imaage{
+    max-width: 69%;
+}
+.hero-section-content-custom{
+    max-width: 65%;
+  
+}
+@media (max-width:767px){
+    .hero-section-content-custom{
+        max-width: 87%;
+    }
+}
+.hero-section-image{
+    max-width: 69%;
+}
+.hero-section-content-custom h2{
+    font-size: 45px;
+    margin: 0;
+    color: white;
+    margin-bottom: 28px;
+    white-space: pre-line;
+    font-weight: 600;
+    max-width: 500px;
+    line-height: 55px;
+}
+.hero-section-content-custom p{
+    margin-top: 0px !important;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: white;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+/* .hero-section-button{
+    margin-top: 0px  !important;
+} */
+.hero-section-button a:hover{
+    background: #fff !important;
+    color: #5d5ced !important;
+    border: 1px solid #5d5ced !important;
+}
+.hero-section-content-custom{
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+
