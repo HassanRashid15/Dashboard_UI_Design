@@ -8,6 +8,7 @@
   .login-box {
     max-width: 400px;
     margin: 0 auto;
+    padding-top: 65px;
   }
   
   .login-form {
@@ -60,16 +61,20 @@
   
   .login-button {
     padding: 0.75rem;
-    background-color: #667eea;
+    background-color: #63dae5 !important;
     color: #ffffff;
     border-radius: 0.375rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.15s ease-in-out;
   }
-  
+
+
   .login-button:hover {
-    background-color: #5a67d8;
+    background: #fff !important;
+    color: #63dae5 !important;
+    border: 1px solid #63dae5 !important;
   }
+
+
   .password-input-wrapper {
     position: relative;
     display: flex;
@@ -189,5 +194,12 @@
     padding: 0 0.5rem; /* Add padding to make space for text */
     z-index: 2;
     color: #6b7280; /* Gray color for the text */
+  }
+  
+
+
+
+  .login-navbar{
+    background-color: #204c6a !important;
   }
   

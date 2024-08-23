@@ -1,14 +1,53 @@
 .nav-custom{
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    background: transparent;
+    width: 100%;
+    position: absolute;
+}
+.navbar-button{
+    background-color: #50b790 !important;
 }
 .navbar-button:hover{
     background: #fff !important;
-    color: #5d5ced !important;
-    border: 1px solid #5d5ced !important;
+    color: #50b790 !important;
+    border: 1px solid #50b790!important;
 }
 .navbar-custom-page{
     width: 100%;
     max-width: 82% !important;
     margin: auto;
 }
+
+
+
+
+
+
+.signupnavbar-transparent {
+  background-color: transparent;
+  width: 100%;
+  position:absolute;
+  }
+  .signup-box-alignment{
+    max-width: 76% !important;
+  }
+  .signupnavbar-layout{
+    max-width: 87% !important;
+  }
+  
+  @media (max-width:767px){
+    .signupnavbar-transparent{
+        position:unset;
+        background-color: #204c6a;
+    }
+    .signup-box-alignment{
+        max-width: 90%;
+    }
+    .signup-layout-adjustment{
+        display: none;
+    }
+    .toggle-menu-custom{
+        padding-left: 35px;
+    }
+  }
+

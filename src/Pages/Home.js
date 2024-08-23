@@ -41,7 +41,7 @@ function Home() {
 
   return (
     <div>
-<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 items-center bg-blue-900 text-white p-8">
+<div className="grid grid-cols-1 hero-section-parent sm:grid-cols-1 md:grid-cols-2 gap-4 items-center text-white p-8">
   <div
     className="flex flex-col justify-center space-y-4 mx-auto w-full p-0 hero-section-content-custom"
     data-aos="fade-up"
