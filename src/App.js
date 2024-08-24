@@ -12,6 +12,7 @@ import ProtectedRoute from './Utils/ProtectedRoute';
 import DashboardNavbar from './Component/DashboardNavbar';
 import { auth } from './FirbaseAuth/Config'; // Ensure correct path
 import { onAuthStateChanged } from 'firebase/auth';
+import ResetPassword from './Component/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
             }
           />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
           {/* Add other routes here */}
         </Routes>
       </div>

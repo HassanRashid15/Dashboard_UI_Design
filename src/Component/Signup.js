@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
-import SuccessModal from './../Utils/SuccessModal.js'; // Adjust the path as necessary
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const auth = getAuth(); // Initialize Firebase Auth
 
@@ -13,15 +13,29 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [teamName, setTeamName] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [errors, setErrors] = useState({ email: '', password: '', confirmPassword: '', teamName: '', companyName: '' });
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    teamName: '',
+    companyName: '',
+  });
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [showPasswordFields, setShowPasswordFields] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const validate = () => {
     let valid = true;
-    const newErrors = { email: '', password: '', confirmPassword: '', teamName: '', companyName: '' };
+    const newErrors = {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      teamName: '',
+      companyName: '',
+    };
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
@@ -48,7 +62,8 @@ function Signup() {
         newErrors.password = 'Password is required';
         valid = false;
       } else if (!passwordRegex.test(password)) {
-        newErrors.password = 'Password must be at least 6 characters long and include at least one uppercase letter and one special character';
+        newErrors.password =
+          'Password must be at least 6 characters long and include at least one uppercase letter and one special character';
         valid = false;
       }
 
@@ -78,9 +93,13 @@ function Signup() {
           .then((userCredential) => {
             const user = userCredential.user;
             console.log('User created successfully:', user);
-            toast.success('Your account has been created successfully!'); // Show success toast
-            setShowSuccessModal(true);
-            // Optionally redirect or perform additional actions
+            toast.success('Your account has been created successfully!');
+            // Start transition
+            setTransitioning(true);
+            // Delay redirection after the transition
+            setTimeout(() => {
+              navigate('/login');
+            }, 2000); // Adjust time to match transition duration
           })
           .catch((error) => {
             if (error.code === 'auth/email-already-in-use') {
@@ -88,158 +107,150 @@ function Signup() {
                 ...prevErrors,
                 email: 'Email already in use',
               }));
-              toast.error('Email already in use'); // Show error toast
+              toast.error('Email already in use');
             } else {
-              const errorCode = error.code;
               const errorMessage = error.message;
-              console.error('Error creating user:', errorCode, errorMessage);
-              toast.error('Error creating user: ' + errorMessage); // Show generic error toast
+              console.error('Error creating user:', error.message);
+              toast.error('Error creating user: ' + errorMessage);
             }
           });
       }
     }
   };
 
+  const handleBack = () => {
+    setShowPasswordFields(false);
+  };
+
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+    <div className={`flex min-h-screen bg-gray-100 ${transitioning ? 'transitioning' : ''}`}>
       {/* Left Side: Signup Form */}
-      <div className="md:w-1/2 flex items-center justify-center p-8">
-        <div className="max-w-md w-full signup-box-alignment">
-          <h1 className="text-2xl font-semibold mb-0 text-gray-800">Sign up for TeamPassword</h1>
-          <h6 className="font-semibold mb-6 text-gray-400">No Credit Card Required</h6>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-5 relative">
-              <input
-                type="text"
-                id="teamName"
-                name="teamName"
-                placeholder=" "
-                value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
-                className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 peer"
-              />
-              <label htmlFor="teamName" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-600 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-indigo-500 peer-focus:text-xs">
-                Team Name
-              </label>
-              <p className={`text-red-500 text-sm mt-1 ${errors.teamName ? 'opacity-100' : 'opacity-0'}`}>
-                {errors.teamName}
-              </p>
-            </div>
-            <div className="mb-5 relative">
-              <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                placeholder=" "
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 peer"
-              />
-              <label htmlFor="companyName" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-600 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-indigo-500 peer-focus:text-xs">
-                Company Name
-              </label>
-              <p className={`text-red-500 text-sm mt-1 ${errors.companyName ? 'opacity-100' : 'opacity-0'}`}>
-                {errors.companyName}
-              </p>
-            </div>
-            <div className="mb-5 relative">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder=" "
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 peer"
-              />
-              <label htmlFor="email" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-600 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-indigo-500 peer-focus:text-xs">
-                Email
-              </label>
-              <p className={`text-red-500 text-sm mt-1 ${errors.email ? 'opacity-100' : 'opacity-0'}`}>
-                {errors.email}
-              </p>
-            </div>
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+        <div className="w-full max-w-md relative">
+          <h1 className="text-2xl font-semibold my-5 pt-2 text-gray-800">Sign up for TeamPassword</h1>
 
-            {/* Conditionally Render Password Fields */}
-            {showPasswordFields && (
-              <>
-                <div className="mb-5 relative">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Wrapper to enforce consistent height */}
+            <div className="relative">
+              {/* First Form */}
+              <div
+                className={`transition-opacity duration-500 ${showPasswordFields ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+              >
+                <div className="mb-5">
+                  <label htmlFor="teamName" className="block text-sm font-medium text-gray-700">Team Name</label>
                   <input
-                    type={passwordVisible ? 'text' : 'password'}
-                    id="password"
-                    name="password"
-                    placeholder=" "
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full p-3 pr-10 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 peer"
+                    type="text"
+                    id="teamName"
+                    name="teamName"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    className={`mt-1 block w-full px-3 py-2 border ${errors.teamName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
                   />
-                  <label htmlFor="password" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-600 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-indigo-500 peer-focus:text-xs">
-                    Password
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
-                    className="absolute inset-y-0 right-3 flex items-center"
-                  >
-                    {passwordVisible ? (
-                      <FaEyeSlash className="text-gray-500" />
-                    ) : (
-                      <FaEye className="text-gray-500" />
-                    )}
-                  </button>
-                  <p className={`text-red-500 text-sm mt-1 ${errors.password ? 'opacity-100' : 'opacity-0'}`}>
-                    {errors.password}
-                  </p>
+                  <p className={`mt-1 text-sm text-red-600 ${errors.teamName ? 'block' : 'hidden'}`}>{errors.teamName}</p>
                 </div>
-                <div className="mb-5 relative">
+                <div className="mb-5">
+                  <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">Company Name</label>
                   <input
-                    type={confirmPasswordVisible ? 'text' : 'password'}
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder=" "
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="block w-full p-3 pr-10 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 peer"
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    className={`mt-1 block w-full px-3 py-2 border ${errors.companyName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
                   />
-                  <label htmlFor="confirmPassword" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-600 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-indigo-500 peer-focus:text-xs">
-                    Confirm Password
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
-                    className="absolute inset-y-0 right-3 flex items-center"
-                  >
-                    {confirmPasswordVisible ? (
-                      <FaEyeSlash className="text-gray-500" />
-                    ) : (
-                      <FaEye className="text-gray-500" />
-                    )}
-                  </button>
-                  <p className={`text-red-500 text-sm mt-1 ${errors.confirmPassword ? 'opacity-100' : 'opacity-0'}`}>
-                    {errors.confirmPassword}
-                  </p>
+                  <p className={`mt-1 text-sm text-red-600 ${errors.companyName ? 'block' : 'hidden'}`}>{errors.companyName}</p>
                 </div>
-              </>
-            )}
+                <div className="mb-5">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`mt-1 block w-full px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                  />
+                  <p className={`mt-1 text-sm text-red-600 ${errors.email ? 'block' : 'hidden'}`}>{errors.email}</p>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Next
+                </button>
+              </div>
 
-            <button
-              type="submit"
-              className="w-full py-3 px-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-            >
-              Sign Up
-            </button>
+              {/* Second Form */}
+              <div
+                className={`transition-opacity duration-500 ${showPasswordFields ? 'opacity-100' : 'opacity-0 pointer-events-none'} absolute top-0 left-0 w-full h-full`}
+              >
+                <div className="mb-5">
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                  <div className="relative">
+                    <input
+                      type={passwordVisible ? 'text' : 'password'}
+                      id="password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      className="absolute inset-y-0 right-0 flex items-center pr-3"
+                    >
+                      {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                  <p className={`mt-1 text-sm text-red-600 ${errors.password ? 'block' : 'hidden'}`}>{errors.password}</p>
+                </div>
+                <div className="mb-5">
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+                  <div className="relative">
+                    <input
+                      type={confirmPasswordVisible ? 'text' : 'password'}
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+                      className="absolute inset-y-0 right-0 flex items-center pr-3"
+                    >
+                      {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                  <p className={`mt-1 text-sm text-red-600 ${errors.confirmPassword ? 'block' : 'hidden'}`}>{errors.confirmPassword}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="w-full py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 mb-4"
+                >
+                  Back
+                </button>
+                <button
+                  type="submit"
+                  className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
           </form>
-          {showSuccessModal && <SuccessModal />}
         </div>
       </div>
-      {/* Right Side: Image or Branding */}
-      <div className="md:w-1/2 hidden md:flex items-center justify-center bg-blue-500 text-white">
-        <div className="text-center p-8">
-          <h2 className="text-3xl font-bold mb-4">Welcome to TeamPassword</h2>
-          <p className="text-lg">Secure your team's passwords easily and efficiently.</p>
-        </div>
+      
+      {/* Right Side: Placeholder */}
+      <div className="w-1/2 hidden md:flex items-center justify-center bg-gray-200">
+        <h2 className="text-3xl font-bold text-gray-700">Join Us Today!</h2>
       </div>
-      <ToastContainer /> {/* Make sure ToastContainer is included here */}
+
+      <ToastContainer />
     </div>
   );
 }
