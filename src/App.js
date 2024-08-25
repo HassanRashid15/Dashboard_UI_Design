@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Navbar from './Component/Navbar';
@@ -7,12 +6,12 @@ import Home from './Pages/Home';
 import Login from './Component/Login';
 import Signup from './Component/Signup';
 import SignupNavbar from './Component/Signupnavbar';
-import Dashboard from './Pages/Dashboard';
+import Dashboard from './Pages/Dashboard.js';
 import ProtectedRoute from './Utils/ProtectedRoute';
-import DashboardNavbar from './Component/DashboardNavbar';
 import { auth } from './FirbaseAuth/Config'; // Ensure correct path
 import { onAuthStateChanged } from 'firebase/auth';
 import ResetPassword from './Component/ResetPassword';
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 
 function App() {
   const location = useLocation();
@@ -38,7 +37,7 @@ function App() {
     if (location.pathname === '/signup') {
       return <SignupNavbar />;
     } else if (location.pathname.startsWith('/dashboard')) {
-      return <DashboardNavbar />;
+      return null; // Remove DashboardNavbar here
     } else {
       return <Navbar />;
     }
@@ -46,14 +45,13 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {renderNavbar()}
-
+      {renderNavbar()} {/* Render the appropriate navbar */}
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route
-            path="/dashboard"
+            path="/dashboard/*"
             element={
               currentUser ? <Dashboard /> : <Navigate to="/login" />
             }
@@ -64,8 +62,10 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      <ToastContainer /> {/* Add ToastContainer here */}
     </div>
   );
 }
 
 export default App;
+

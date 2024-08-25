@@ -1,0 +1,113 @@
+/* Dashboard Navbar */
+.custom-navbar {
+    background-color: #ffffff;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .custom-navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #4a4a4a;
+  }
+  
+  .custom-navbar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 16px;
+  }
+  
+  .custom-navbar-actions {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .custom-navbar-action {
+    background: none;
+    border: none;
+    color: #4a4a4a;
+    cursor: pointer;
+  }
+  
+  .custom-navbar-action:hover {
+    color: #2d2d2d;
+  }
+  
+  /* Dashboard Sidebar */
+  .dashboard-sidebar {
+    width: 250px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .dashboard-sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+  }
+  
+  .dashboard-sidebar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .dashboard-sidebar-nav {
+    margin-top: 20px;
+  }
+  
+  .dashboard-sidebar-link {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .dashboard-sidebar-link:hover {
+    background-color: #1f1f1f;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .custom-navbar-toggle {
+      display: block;
+    }
+  
+    .dashboard-sidebar {
+      transform: translateX(-100%);
+    }
+  
+    .dashboard-sidebar.open {
+      transform: translateX(0);
+    }
+  
+    .dashboard-sidebar-toggle {
+      display: block;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .dashboard-sidebar {
+      position: static;
+      transform: none;
+    }
+  
+    .dashboard-sidebar-toggle {
+      display: none;
+    }
+  }
+  

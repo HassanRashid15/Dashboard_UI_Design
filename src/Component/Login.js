@@ -49,15 +49,26 @@ function Login() {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log('User logged in successfully:', user);
-          toast.success('Login successful!');
-          setTimeout(() => navigate('/dashboard'), 3000); // Redirect after 3 seconds
+  
+          // Only one toast should be called here
+          toast.success('Login successful!', {
+            autoClose: 1500, // Auto-close after 1.5 seconds
+            onClose: () => navigate('/dashboard'), // Redirect to dashboard after toast closes
+          });
         })
         .catch((error) => {
           console.error('Error logging in:', error.code, error.message);
-          toast.error('Login failed. Please check your credentials and try again.');
+  
+          // Only one error toast should be called here
+          toast.error('Login failed. Please check your credentials and try again.', {
+            autoClose: 3000, // Auto-close after 3 seconds
+          });
         });
     }
   };
+  
+  
+  
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleAuthProvider)

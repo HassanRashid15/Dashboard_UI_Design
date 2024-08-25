@@ -1,14 +1,28 @@
-// src/pages/Dashboard.js
-import React from 'react';
+import React, { useState } from 'react';
+import DashboardSidebar from '../Component/DashboardSidebar';
+import DashboardNavbar from '../Component/DashboardNavbar';
 
-function Dashboard() {
+
+
+function DashboardLayout() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="dashboard-container p-8">
-      <h1 className="text-2xl font-semibold text-gray-800">Welcome to the Dashboard</h1>
-      <p className="text-gray-600 mt-4">This is your dashboard where you can manage your profile and view your data.</p>
-      {/* Add more dashboard content here */}
+    <div className="flex flex-col md:flex-row">
+      <DashboardSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className="flex-1 flex flex-col">
+        <DashboardNavbar toggleSidebar={toggleSidebar} />
+        {/* Main content goes here */}
+        <main className="flex-1 p-6">
+        <h1>hekldmflsdkmlsamdlkas</h1>
+        </main>
+      </div>
     </div>
   );
 }
 
-export default Dashboard;
+export default DashboardLayout;
