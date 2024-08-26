@@ -25,3 +25,17 @@
 .footer-text-color{
     color:#204c6a !important ;
 }
+.shadow-custom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important ;
+  }
+  @media (min-width:1366px){
+    .footer-alignment-custom{
+        width: 100%;
+        margin: auto;
+        max-width: 88% !important;
+    }
+  }
+
+  .footer-parent-custom{
+    padding-top: 60px;
+  }

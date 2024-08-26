@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import navlogo from "./../Assets/Image/navlogo.png";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  // Custom background color based on the route
-  const navbarBackgroundColor = location.pathname === '/login' 
-    ? 'login-navbar'  // Custom red background for login page
-    : 'bg-transparent';  // Transparent background for home page
+  // Scroll event to change navbar color
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) { 
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+console.log(window.scrollY)
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Custom background color based on scroll and route
+  const navbarBackgroundColor = scrolled
+    ? 'bg-colored' // Color after scrolling
+    : location.pathname === '/login'
+      ? 'login-navbar'
+      : 'bg-transparent'; // Default transparent
 
   return (
     <div>
@@ -23,7 +41,6 @@ function Navbar() {
             <div className="flex space-x-4 w-7/12 justify-between">
               <div>
                 <a href="/" className="flex items-center py-5 px-2">
-                  {/* <img src={navlogo} alt="Logo" /> */}
                   <span className="font-bold navbar-heading-tittle">Team Password</span>
                 </a>
               </div>
@@ -64,10 +81,10 @@ function Navbar() {
         {isMenuOpen && (
           <div className="mobile-menu md:hidden">
             <div className='flex flex-col'>
-              <a href="/login" className="py-5 px-3 text-gray-700 hover:text-gray-900">
+              <a href="/login" className="py-5 px-3 text-white hover:text-gray-900">
                 Login 
               </a>
-              <a href="/signup" className="py-5 px-3 text-gray-700 hover:text-gray-900">
+              <a href="/signup" className="py-5 px-3 text-white hover:text-gray-900">
                 Signup
               </a> 
             </div>

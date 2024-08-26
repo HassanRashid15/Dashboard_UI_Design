@@ -1,4 +1,3 @@
-// src/Component/Login.js
 import React, { useState } from 'react';
 import { auth, googleAuthProvider } from './../FirbaseAuth/Config.js';
 import { signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
@@ -50,25 +49,22 @@ function Login() {
           const user = userCredential.user;
           console.log('User logged in successfully:', user);
   
-          // Only one toast should be called here
           toast.success('Login successful!', {
-            autoClose: 1500, // Auto-close after 1.5 seconds
-            onClose: () => navigate('/dashboard'), // Redirect to dashboard after toast closes
+            autoClose: 1500,
+            onClose: () => navigate('/dashboard'),
           });
+          setEmail('');
+          setPassword('');
         })
         .catch((error) => {
           console.error('Error logging in:', error.code, error.message);
   
-          // Only one error toast should be called here
           toast.error('Login failed. Please check your credentials and try again.', {
-            autoClose: 3000, // Auto-close after 3 seconds
+            autoClose: 3000,
           });
         });
     }
   };
-  
-  
-  
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleAuthProvider)
@@ -76,7 +72,7 @@ function Login() {
         const user = result.user;
         console.log('User signed in with Google:', user);
         toast.success('Google Sign-In successful!');
-        setTimeout(() => navigate('/dashboard'), 3000); // Redirect after 3 seconds
+        setTimeout(() => navigate('/dashboard'), 3000);
       })
       .catch((error) => {
         console.error('Error signing in with Google:', error.code, error.message);
@@ -90,8 +86,8 @@ function Login() {
       sendPasswordResetEmail(auth, resetEmail)
         .then(() => {
           toast.success('Password reset email sent successfully!');
-          setResetEmail(''); // Clear the email field after sending the email
-          setIsResetFormVisible(false); // Hide the reset form
+          setResetEmail('');
+          setIsResetFormVisible(false);
         })
         .catch((error) => {
           console.error('Error sending password reset email:', error.code, error.message);
@@ -120,7 +116,7 @@ function Login() {
                       placeholder="Enter Your Email Address"
                       value={resetEmail}
                       onChange={(e) => setResetEmail(e.target.value)}
-                      className="login-input block w-full p-3 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                      className="login-input block w-full p-3 rounded focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                     />
                   </div>
                   <button type="submit" className="login-button w-full p-3 mt-4 bg-indigo-600 text-white rounded shadow-lg">Reset Password</button>
@@ -135,7 +131,7 @@ function Login() {
               </>
             ) : (
               <>
-                <h1 className="login-title text-2xl font-semibold mb-6 text-gray-800 text-center">Login</h1>
+                <h1 className="login-title text-2xl font-semibold mb-6 text-gray-800 text-left">Please Log In</h1>
                 <form onSubmit={handleEmailLogin}>
                   <div className="login-field mb-5">
                     <label htmlFor="email" className="login-label block mb-2 text-sm font-medium text-gray-600">Email</label>
@@ -146,7 +142,7 @@ function Login() {
                       placeholder="Enter Your Email Address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="login-input block w-full p-3 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                      className="login-input block w-full p-3 rounded"
                     />
                     {errors.email && <p className="login-error text-red-500 text-sm mt-1">{errors.email}</p>}
                   </div>
@@ -160,7 +156,7 @@ function Login() {
                         placeholder="Enter Your Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="login-input block w-full p-3 pr-10 rounded bg-gray-200 border border-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                        className="login-input block w-full p-3 pr-10 rounded"
                       />
                       <button
                         type="button"
@@ -178,29 +174,18 @@ function Login() {
                     onClick={() => setIsResetFormVisible(true)}
                     className="forgot-password text-gray-600 text-right w-full block mt-4 text-sm hover:underline"
                   >
-                    Forgot password?
+                    Forgot your password?
                   </button>
                 </form>
-                <div className="divider-or my-6 flex items-center justify-center">
+                <div className="divider-or my-3 flex items-center justify-center">
                   <span className="text-gray-500">OR</span>
                 </div>
-                <button
-                  onClick={handleGoogleSignIn}
-                  aria-label="Sign in with Google"
-                  className="google-signin justify-center flex items-center bg-white border border-gray-300 rounded-md shadow-sm p-3 space-x-2 hover:bg-gray-50 transition ease-in-out duration-150 w-full"
-                >
-                  <div className="google-logo flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full border border-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6">
-                      <title>Sign in with Google</title>
-                      <desc>Google G Logo</desc>
-                      <path fill="#4285F4" d="M12 5.5c-1.29 0-2.5.43-3.47 1.16L6.34 5.94A6.978 6.978 0 0 1 12 4c3.59 0 6.68 2.78 7.35 6.34h-7.3l-1.08-2.5a3.48 3.48 0 0 0-2.53-1.1z"></path>
-                      <path fill="#34A853" d="M4.93 12.47a7.473 7.473 0 0 1 0-2.47L12 12c0 2.65-.74 5.14-2.04 7.21l-3.57-2.49a7.473 7.473 0 0 1-1.46-3.24z"></path>
-                      <path fill="#FBBC05" d="M12 4c-.78 0-1.5.14-2.2.39l-3.46-2.49A11.94 11.94 0 0 0 12 0c6.62 0 12 5.38 12 12 0 .89-.09 1.76-.25 2.61l-2.89-1.97A6.978 6.978 0 0 0 12 4z"></path>
-                      <path fill="#FF0C2D" d="M12 12l-7.4 5.25a12.015 12.015 0 0 1-2.9-3.33L0 12l2.9-3.5a12.015 12.015 0 0 1 2.9-3.33L12 12z"></path>
-                    </svg>
-                  </div>
-                  <span className="text-gray-800 font-medium">Sign in with Google</span>
-                </button>
+                <button  onClick={handleGoogleSignIn} type="button" class="google-button">
+  <span class="google-button__icon">
+    <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335"/><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05"/><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4"/><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853"/></svg>
+  </span>
+  <span class="google-button__text">Sign in with Google</span>
+</button>    
               </>
             )}
           </div>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FaComputer } from "react-icons/fa6";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Importing react-icons for carousel controls
+import { RiComputerLine } from "react-icons/ri";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import homepagehero1 from "./../Assets/Image/homepagehero1.png";
+import homepagehero2 from "./../Assets/Image/homepagehero2.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -62,14 +64,15 @@ function Home() {
     </div>
   </div>
   <div
-    className="hidden md:flex justify-center w-full h-full mx-auto hero-section-image"
+    className="relative lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:flex lg:items-center lg:justify-center hidden md:flex justify-center w-full h-full mx-auto hero-section-image"
     data-aos="fade-left"
   >
     <img
-      className="w-full h-auto object-fill rounded-lg shadow-lg"
-      src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+      className="object-cover object-center w-full h-auto lg:w-2/3 lg:h-auto rounded-3xl shadow-lg hero-section-image1"
+      src={homepagehero2}
       alt="App Screenshot"
     />
+    <img className=' hero-section-image2 object-cover object-center w-full h-auto lg:w-1/2 lg:h-auto rounded-3xl shadow-lg absolute top-1/2 left-1/2 transform lg:-translate-x-1/3 lg:-translate-y-1/3'  src={homepagehero1}/>
   </div>
 </div>
 
@@ -88,31 +91,31 @@ function Home() {
         </h4>
       </div>
       <div className="container grid-layout-custom mx-auto my-7">
-        <div className="grid grid-layout-adjustment grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-layout-adjustment grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
           <div className='mx-auto w-full feature-content-parent' data-aos="fade-up" data-aos-delay="100">
             <div className='feature-icon-content'>
-              <FaComputer />
+            <RiComputerLine />
               <h1>Keep Projects Moving</h1>
               <h2>Everybody hates being locked out. With our shared password manager, your team's apps and tools are accessible anywhere.</h2>
             </div>
           </div>
-          <div className='mx-auto w-full feature-content-parent' data-aos="fade-up" data-aos-delay="300">
-            <div className='feature-icon-content'>
-              <FaComputer />
+          <div className='mx-auto w-full feature-content-parent ' data-aos="fade-up" data-aos-delay="300">
+            <div className='feature-icon-content feature-second-box'>
+            <RiComputerLine />
               <h1>Keep Projects Moving</h1>
               <h2>Everybody hates being locked out. With our shared password manager, your team's apps and tools are accessible anywhere.</h2>
             </div>
           </div>
           <div className='mx-auto w-full feature-content-parent' data-aos="fade-up" data-aos-delay="500">
-            <div className='feature-icon-content'>
-              <FaComputer />
+            <div className='feature-icon-content feature-third-box'>
+            <RiComputerLine />
               <h1>Keep Projects Moving</h1>
               <h2>Everybody hates being locked out. With our shared password manager, your team's apps and tools are accessible anywhere.</h2>
             </div>
           </div>
           <div className='mx-auto w-full feature-content-parent' data-aos="fade-up" data-aos-delay="700">
             <div className='feature-icon-content'>
-              <FaComputer />
+            <RiComputerLine />
               <h1>Keep Projects Moving</h1>
               <h2>Everybody hates being locked out. With our shared password manager, your team's apps and tools are accessible anywhere.</h2>
             </div>
@@ -120,7 +123,7 @@ function Home() {
         </div>
       </div>
     </div>
-      <div className="feature-content mt-5 py-9">
+      <div className="testimonial-content mt-5 py-9">
           <h2 className="text-1xl tracking-tight leading-10 font-bold sm:text-2xl text-slate-700 text-center sm:leading-none md:text-3xl">
       Testimonial
           </h2>
@@ -164,7 +167,16 @@ function Home() {
     </div>
   </div>
 </div>
+<div className='banner-parent'>
+  <div className='banner-content-custom text-white text-center'>
+  <h1>The Password Manager for Teams
+  </h1>
+  <p>TeamPassword is the fastest, easiest and most secure way to store and share team logins and passwords.
+</p>
+<button className='mt-5' >Get Started!</button>
+  </div>
 
+</div>
     </div>
   );
 }

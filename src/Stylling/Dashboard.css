@@ -37,7 +37,6 @@
     color: #2d2d2d;
   }
   
-  /* Dashboard Sidebar */
   .dashboard-sidebar {
     width: 250px;
     background-color: #2d2d2d;
@@ -52,6 +51,9 @@
     transform: translateX(0);
     transition: transform 0.3s ease;
   }
+  .dashboard-sidebar  h1{
+    font-size: 1.5rem;
+  }
   
   .dashboard-sidebar-toggle {
     display: none;
@@ -61,7 +63,7 @@
   }
   
   .dashboard-sidebar-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
   

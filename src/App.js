@@ -6,12 +6,12 @@ import Home from './Pages/Home';
 import Login from './Component/Login';
 import Signup from './Component/Signup';
 import SignupNavbar from './Component/Signupnavbar';
-import Dashboard from './Pages/Dashboard.js';
+import DashboardLayout from './Pages/Dashboard'; 
 import ProtectedRoute from './Utils/ProtectedRoute';
-import { auth } from './FirbaseAuth/Config'; // Ensure correct path
+import { auth } from './FirbaseAuth/Config.js';
 import { onAuthStateChanged } from 'firebase/auth';
 import ResetPassword from './Component/ResetPassword';
-import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import { ToastContainer } from 'react-toastify'; 
 
 function App() {
   const location = useLocation();
@@ -37,7 +37,7 @@ function App() {
     if (location.pathname === '/signup') {
       return <SignupNavbar />;
     } else if (location.pathname.startsWith('/dashboard')) {
-      return null; // Remove DashboardNavbar here
+      return null; 
     } else {
       return <Navbar />;
     }
@@ -53,7 +53,7 @@ function App() {
           <Route
             path="/dashboard/*"
             element={
-              currentUser ? <Dashboard /> : <Navigate to="/login" />
+              currentUser ? <DashboardLayout /> : <Navigate to="/login" />
             }
           />
           <Route path="/signup" element={<Signup />} />
@@ -68,4 +68,3 @@ function App() {
 }
 
 export default App;
-
