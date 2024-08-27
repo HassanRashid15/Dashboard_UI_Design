@@ -1,8 +1,11 @@
 .nav-custom{
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+   
     background: transparent;
     width: 100%;
-    position: absolute;
+    position: fixed; /* Keeps the navbar fixed at the top */
+    top: 0; /* Positions the navbar at the very top of the viewport */
+    left: 0; /* Aligns it to the left side */
+    z-index: 1000; /* Ensures the navbar appears above other content */
 }
 .navbar-button{
     background-color: #50b790 !important;
@@ -12,9 +15,9 @@
     color: #50b790 !important;
     border: 1px solid #50b790!important;
 }
-.navbar-custom-page{
+.navbar-custom-page {
     width: 100%;
-    max-width: 82% !important;
+    max-width: 85% !important;
     margin: auto;
 }
 
@@ -51,3 +54,40 @@
     }
   }
 
+
+
+
+
+  .nav-custom {
+    background: transparent;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.bg-colored {
+    background-color: #204c6a; /* Change this to your desired color */
+}
+
+.navbar-button {
+    background-color: #50b790 !important;
+}
+
+.navbar-button:hover {
+    background: #fff !important;
+    color: #50b790 !important;
+    border: 1px solid #50b790 !important;
+}
+
+
+
+@media (max-width: 767px) {
+    .mobile-menu {
+        width: 100%;
+        margin: auto;
+        max-width: 83%;
+    }
+}

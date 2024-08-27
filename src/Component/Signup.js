@@ -117,26 +117,24 @@ function Signup() {
       }
     }
   };
+  
 
   const handleBack = () => {
     setShowPasswordFields(false);
   };
 
   return (
-    <div className={`flex min-h-screen bg-gray-100 ${transitioning ? 'transitioning' : ''}`}>
-      {/* Left Side: Signup Form */}
+    <div className={`flex min-h-screen signup-layout-custom bg-gray-100 ${transitioning ? 'transitioning' : ''}`}>
       <div className="w-full md:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md relative">
+        <div className="w-full max-w-md relative mx-auto form-layout-alignment">
           <h1 className="text-2xl font-semibold my-5 pt-2 text-gray-800">Sign up for TeamPassword</h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Wrapper to enforce consistent height */}
             <div className="relative">
-              {/* First Form */}
               <div
                 className={`transition-opacity duration-500 ${showPasswordFields ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
               >
-                <div className="mb-5">
+                <div className="mb-5 signup-form-custom">
                   <label htmlFor="teamName" className="block text-sm font-medium text-gray-700">Team Name</label>
                   <input
                     type="text"
@@ -144,11 +142,11 @@ function Signup() {
                     name="teamName"
                     value={teamName}
                     onChange={(e) => setTeamName(e.target.value)}
-                    className={`mt-1 block w-full px-3 py-2 border ${errors.teamName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                    className={`mt-1 block w-full px-3 py-2 border ${errors.teamName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm  sm:text-sm`}
                   />
                   <p className={`mt-1 text-sm text-red-600 ${errors.teamName ? 'block' : 'hidden'}`}>{errors.teamName}</p>
                 </div>
-                <div className="mb-5">
+                <div className="mb-5 signup-form-custom">
                   <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">Company Name</label>
                   <input
                     type="text"
@@ -156,11 +154,11 @@ function Signup() {
                     name="companyName"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
-                    className={`mt-1 block w-full px-3 py-2 border ${errors.companyName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                    className={`mt-1 block w-full px-3 py-2 border ${errors.companyName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm sm:text-sm`}
                   />
                   <p className={`mt-1 text-sm text-red-600 ${errors.companyName ? 'block' : 'hidden'}`}>{errors.companyName}</p>
                 </div>
-                <div className="mb-5">
+                <div className="mb-5 signup-form-custom">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                   <input
                     type="email"
@@ -168,23 +166,22 @@ function Signup() {
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`mt-1 block w-full px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                    className={`mt-1 block w-full px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none  sm:text-sm`}
                   />
                   <p className={`mt-1 text-sm text-red-600 ${errors.email ? 'block' : 'hidden'}`}>{errors.email}</p>
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700  "
                 >
                   Next
                 </button>
               </div>
 
-              {/* Second Form */}
               <div
                 className={`transition-opacity duration-500 ${showPasswordFields ? 'opacity-100' : 'opacity-0 pointer-events-none'} absolute top-0 left-0 w-full h-full`}
               >
-                <div className="mb-5">
+                <div className="mb-5 signup-form-custom">
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
                   <div className="relative">
                     <input
@@ -193,7 +190,7 @@ function Signup() {
                       name="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                      className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm  sm:text-sm`}
                     />
                     <button
                       type="button"
@@ -205,7 +202,7 @@ function Signup() {
                   </div>
                   <p className={`mt-1 text-sm text-red-600 ${errors.password ? 'block' : 'hidden'}`}>{errors.password}</p>
                 </div>
-                <div className="mb-5">
+                <div className="mb-5 signup-form-custom">
                   <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
                   <div className="relative">
                     <input
@@ -214,7 +211,7 @@ function Signup() {
                       name="confirmPassword"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                      className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm  sm:text-sm`}
                     />
                     <button
                       type="button"
@@ -229,13 +226,13 @@ function Signup() {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="w-full py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 mb-4"
+                  className="w-full py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none  mb-4"
                 >
                   Back
                 </button>
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none "
                 >
                   Sign Up
                 </button>
@@ -245,9 +242,13 @@ function Signup() {
         </div>
       </div>
       
-      {/* Right Side: Placeholder */}
-      <div className="w-1/2 hidden md:flex items-center justify-center bg-gray-200">
-        <h2 className="text-3xl font-bold text-gray-700">Join Us Today!</h2>
+      <div className=" right-sidebar-parent w-1/2 hidden md:flex items-center justify-center">
+      <div className='flex flex-col gap-6 right-box-content-custom text-white' >
+        <h2 className="text-3xl font-bold ">Customers around the world love and trust TeamPassword</h2>
+        <quote>
+        "Instead of sending a Slack message to a channel and waiting for a reply that might not even be right, going straight to TeamPassword saves me and my coworkers a ton of time. Keep being awesome TeamPassword!"</quote>
+        <p>– Tyler, The Infinite Agency</p>
+        </div>
       </div>
 
       <ToastContainer />

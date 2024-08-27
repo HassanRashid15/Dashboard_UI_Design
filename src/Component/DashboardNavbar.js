@@ -1,44 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../FirbaseAuth/Config'; // Ensure correct path
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
-function DashboardNavbar({ toggleSidebar, username }) {
+function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, currentView }) {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Update the document title dynamically based on pageTitle prop
+    document.title = pageTitle || 'Dashboard';
+  }, [pageTitle]); // Dependency array ensures this runs when pageTitle changes
 
   const handleProfileMenuToggle = () => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
 
-  const handleLogout = () => {
-    console.log('Logout button clicked'); // Debugging line
-    signOut(auth)
-      .then(() => {
-        console.log('Sign out successful'); // Debugging line
-        // Delay before showing the toast message
-        setTimeout(() => {
-          toast.success('Signed out successfully!', {
-            autoClose: 2000,  // Show toast for 2 seconds
-            hideProgressBar: true,
-            onClose: () => navigate('/login'), // Redirect after the toast closes
-          });
-        }, 500); // Delay before showing the toast (0.5 second)
-      })
-      .catch((error) => {
-        console.error('Error signing out:', error);
-        toast.error('Error signing out. Please try again.', {
-          autoClose: 2000, // Auto-close after 2 seconds
-          hideProgressBar: true,
-        });
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast.success('Signed out successfully!', {
+        autoClose: 2000,
+        hideProgressBar: true,
+        onClose: () => navigate('/login'),
       });
+    } catch (error) {
+      console.error('Error signing out:', error);
+      toast.error(`Error signing out: ${error.message}`, {
+        autoClose: 5000,
+        hideProgressBar: true,
+      });
+    }
   };
-  
-  
-  // Get the first letter of the username
-  const userInitial = username ? username.charAt(0).toUpperCase() : '';
+
+  // Determine the display name for the avatar
+  const getInitial = (str) => {
+    if (str) {
+      const trimmedStr = str.trim();
+      if (trimmedStr.length === 0) return 'N/A'; // Handle empty strings
+      const firstChar = trimmedStr.charAt(0).toUpperCase();
+      return /^[A-Za-z]$/.test(firstChar) ? firstChar : 'N/A';
+    }
+    return 'N/A';
+  };
+
+  // Get the initial from either username or email
+  const userInitial = getInitial(username || email || 'Guest');
+
+  // Debugging logs
+  console.log('Username:', username);
+  console.log('Email:', email);
+  console.log('User Initial:', userInitial);
 
   return (
     <div className="custom-navbar">
@@ -63,16 +77,19 @@ function DashboardNavbar({ toggleSidebar, username }) {
         </svg>
       </button>
 
-      {/* Dashboard Title */}
       <h1 className="custom-navbar-title">
-        Dashboard
+        {pageTitle || 'Dashboard'}
       </h1>
+
+      {/* Conditional Rendering Based on View */}
+      {currentView === 'table' && (
+        <div className="table-view">
+          {/* Render content specific to the table view */}
+        </div>
+      )}
 
       {/* Navbar Actions */}
       <div className="custom-navbar-actions hidden md:flex items-center">
-        <button className="custom-navbar-action">Notifications</button>
-
-        {/* Profile Avatar */}
         <div className="relative ml-4 flex">
           <button
             className="profile-avatar"
@@ -99,7 +116,6 @@ function DashboardNavbar({ toggleSidebar, username }) {
 
       {/* Mobile View */}
       <div className="md:hidden flex items-center">
-        {/* Mobile Profile Avatar */}
         <div className="relative ml-4">
           <button
             className="profile-avatar"
@@ -109,7 +125,6 @@ function DashboardNavbar({ toggleSidebar, username }) {
               {userInitial}
             </div>
           </button>
-          {/* Mobile Profile Menu Dropdown */}
           {isProfileMenuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
               <button className="block px-4 py-2 text-sm text-gray-700 w-full text-left">Profile</button>

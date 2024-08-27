@@ -9,5 +9,7 @@
 
 body {
     font-family: "Mulish";
+    background-color: #f4f4f9 !important;
+    overflow-x: hidden;
 
 }
