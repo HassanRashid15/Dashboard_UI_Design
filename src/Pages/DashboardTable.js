@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import TableContent from './../Pages/TableConent.js';
 
 function DashboardTable() {
   return (
-    <div>kjnajdnjsadnajsh</div>
+    <TableContent/>
   )
 }
 

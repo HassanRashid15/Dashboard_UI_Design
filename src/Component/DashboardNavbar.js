@@ -77,7 +77,6 @@ function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, cur
         </svg>
       </button>
 
-      {/* Displaying the Dynamic Page Title */}
       <h1 className="custom-navbar-title">
         {pageTitle || 'Dashboard'}
       </h1>

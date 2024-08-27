@@ -1,0 +1,131 @@
+
+
+.card-description-tittle-custom{
+    color:#48BB78;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.card-content-custom h2{
+    color: #A0AEC0;
+    font-size: 16px;
+    font-weight: 700;
+}
+.card-content-custom p{
+    color: #1f2733;
+    font-weight: 800;
+}
+.negative-number{
+    color: #F56565;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.arrow-icon {
+    font-size: 1.5rem;
+    margin-right: 0.2rem; 
+    display: inline-flex; 
+    vertical-align: middle; 
+  }
+  
+  .icon-background{
+    background-color: #1f2937;
+    padding: 12px;
+    border-radius: 13px;
+  }
+
+
+  @media (min-width:768px) and (max-width:1299px){
+    .card-layout-design-custom{
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+    .card-body-custom{
+        width: 100%;
+    }
+  }
+
+
+
+
+ 
+ 
+
+  .card-second-section-content h2{
+color: #A0AEC0;
+font-size:  0.875rem;
+font-weight:700;
+  }
+  .card-second-section-content p{
+   font-size: 1.125rem;
+   font-weight: 700;
+   color: #1f2733;
+   margin-bottom: 0.5rem; 
+  }
+.card-second-section-content h5{
+    color:  #A0AEC0 ;
+    font-weight: 400 ;
+    padding-bottom: 100px;
+    font-size:  0.875rem;
+}
+.card-second-section-content-alignment p{
+    padding-bottom: 100px;
+}
+ .second-card-body-custom .image-box{
+    width: 100%;
+    height: 100%;
+ }
+ .second-card-body-custom .image-box img {
+    height: 100%;
+    object-fit: contain;
+ }
+ 
+ .second-card-body-custom button{
+    color:#1f2733 ;
+    font-size:0.875rem ;
+    font-weight: 700;
+    transition: 0.5s;
+ }
+
+ @media (max-width:1299px){
+    .card-second-section-content{
+        width: 100%;
+    }
+    .second-card-body-custom{
+        width: 100%;
+    }
+    .second-card-body-custom{
+      flex-direction: column;
+    }
+    .card-second-section-content h5{
+      padding-bottom: 55px;
+    }
+    .card-second-section-content-alignment p{
+        padding-bottom: 55px;
+    }
+     
+    .second-card-body-custom .image-box{
+        display: flex;
+        justify-content: center;
+    }
+    /* .second-card-alignment{
+        margin-top:12px;
+        
+    } */
+  }
+  #chart{
+    width: 100%;
+  }
+  .apexcharts-toolbar{
+    display: none !important;
+  }
+  @media (max-width:767px){
+    .orderoverview-content-custom{
+        justify-content: space-between;
+    }
+  }
+
+
+  .order-date-custom p {
+    padding-left:20px;
+  }

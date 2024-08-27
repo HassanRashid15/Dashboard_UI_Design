@@ -1,49 +1,61 @@
 import React, { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom'; // Import useLocation
+import { Routes, Route, useLocation } from 'react-router-dom';
 import DashboardSidebar from '../Component/DashboardSidebar';
 import DashboardNavbar from '../Component/DashboardNavbar';
 import DashboardTable from '../Pages/DashboardTable';
+import DashboardSetting from './../Pages/DashboardSetting.js';
+import DashboardContent from '../Pages/DashboardContent';
 
 function DashboardLayout() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
+
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-  // Determine the page title based on the current path
   const getPageTitle = () => {
-    if (location.pathname === '/dashboard/table') {
-      return 'Table View';
-    } else if (location.pathname === '/dashboard') {
-      return 'Dashboard Overview'; // Default title for the dashboard route
-    } else {
-      return 'Dashboard'; // Fallback title for other routes
+    switch (location.pathname) {
+      case '/dashboard/table':
+        return 'Table View';
+      case '/dashboard/analytics':
+        return 'Analytics';
+      case '/dashboard/setting':
+        return 'Settings';
+      default:
+        return 'Dashboard';
     }
   };
 
   const breadcrumbPaths = [
-    { name: 'Dashboards', link: '/dashboard' },
-    { name: 'Table', link: '/dashboard/table' },
-    // Add more breadcrumb paths if needed
+    { name: 'Dashboard', link: '/dashboard' },
+    { name: 'Table', link: '/table' },
+    { name: 'Setting', link: '/setting' },
   ];
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="relative flex flex-col md:flex-row">
       <DashboardSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
       <div className="flex-1 flex flex-col">
-        <DashboardNavbar 
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-gray-800 bg-opacity-50 z-40 md:hidden"
+            onClick={toggleSidebar}
+          ></div>
+        )}
+
+        <DashboardNavbar
           toggleSidebar={toggleSidebar}
-          pageTitle={getPageTitle()} // Use dynamic page title
+          pageTitle={getPageTitle()}
           paths={breadcrumbPaths}
-          
         />
-        
-        {/* Main content area with routing */}
-        <main className="flex-1 p-6">
+
+        <main className="flex-1 p-5">
           <Routes>
+            <Route path="/" element={<DashboardContent />} />
             <Route path="/table" element={<DashboardTable />} />
-            {/* Add other routes here as needed */}
+            <Route path="/setting" element={<DashboardSetting />} />
           </Routes>
         </main>
       </div>
