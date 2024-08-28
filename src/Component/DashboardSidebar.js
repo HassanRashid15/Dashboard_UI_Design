@@ -2,6 +2,8 @@ import React from 'react';
 import { FaHome } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { IoSettingsSharp } from 'react-icons/io5';
+import { CgProfile } from "react-icons/cg";
+import { PiVinylRecordFill } from "react-icons/pi";
 import { RiBarChartFill } from 'react-icons/ri';
 
 function DashboardSidebar({ isOpen, toggleSidebar }) {
@@ -10,12 +12,18 @@ function DashboardSidebar({ isOpen, toggleSidebar }) {
     { icon: <FaHome />, name: 'Overview', href: '/dashboard' },
     { icon: <RiBarChartFill />, name: 'Tables', href: '/dashboard/table' },
     { icon: <IoSettingsSharp />, name: 'Setting', href: '/dashboard/setting' },
+    { icon: <CgProfile />, name: 'Profile', href: '/dashboard/profile' },
+    { icon: <PiVinylRecordFill />, name: 'Record', href: '/dashboard/record' },
+
+
   ];
 
   return (
-    <div className={`bg-gray-900 text-gray-200 w-64 min-h-screen fixed top-0 left-0 z-50 transform ${
-      isOpen ? 'translate-x-0' : '-translate-x-full'
-    } transition-transform duration-300 md:relative md:translate-x-0`}>
+    <div
+      className={`bg-gray-900 text-gray-200 w-64 fixed top-0 left-0 z-50 h-full transform ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      } transition-transform duration-300 md:relative md:translate-x-0 md:h-auto`}
+    >
       <div className="flex justify-between items-center p-4 md:hidden">
         <h1 className="text-xl font-bold text-white">TeamPassword</h1>
         <button onClick={toggleSidebar}>
@@ -35,7 +43,7 @@ function DashboardSidebar({ isOpen, toggleSidebar }) {
           </svg>
         </button>
       </div>
-      
+
       <h1 className="text-2xl font-bold p-4 text-white hidden md:block">TeamPassword</h1>
 
       <nav className="p-4">

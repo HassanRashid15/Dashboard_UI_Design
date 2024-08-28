@@ -6,7 +6,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "./App.css";
 
-
+html,
+body {
+  height: 100%;
+  margin: 0;
+  
+}
 body {
     font-family: "Mulish";
     background-color: #f4f4f9 !important;
