@@ -3,8 +3,10 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import DashboardSidebar from '../Component/DashboardSidebar';
 import DashboardNavbar from '../Component/DashboardNavbar';
 import DashboardTable from '../Pages/DashboardTable';
-import DashboardSetting from './../Pages/DashboardSetting.js';
+import DashboardSetting from './../Pages/DashboardSetting';
 import DashboardContent from '../Pages/DashboardContent';
+import DashboradRecord from './../Pages/DashboradRecord.js';
+import DashboardProfile from './../Pages/DashboardProfile';
 
 function DashboardLayout() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -29,15 +31,15 @@ function DashboardLayout() {
 
   const breadcrumbPaths = [
     { name: 'Dashboard', link: '/dashboard' },
-    { name: 'Table', link: '/table' },
-    { name: 'Setting', link: '/setting' },
+    { name: 'Table', link: '/dashboard/table' },
+    { name: 'Setting', link: '/dashboard/setting' },
   ];
 
   return (
     <div className="relative flex flex-col md:flex-row">
       <DashboardSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <div className="flex-1 flex flex-col">
+      <div className={`flex-1 flex flex-col main-content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         {isSidebarOpen && (
           <div
             className="fixed inset-0 bg-gray-800 bg-opacity-50 z-40 md:hidden"
@@ -56,6 +58,9 @@ function DashboardLayout() {
             <Route path="/" element={<DashboardContent />} />
             <Route path="/table" element={<DashboardTable />} />
             <Route path="/setting" element={<DashboardSetting />} />
+            <Route path="/profile" element={<DashboardProfile />} />
+            <Route path="/record" element={<DashboradRecord />} />
+
           </Routes>
         </main>
       </div>

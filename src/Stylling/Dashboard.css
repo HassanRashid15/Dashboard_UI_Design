@@ -113,3 +113,11 @@
     }
   }
   
+  
+
+  @media (max-width: 1024px){
+    .last-section-dashboard{
+display: flex !important;
+flex-direction: column !important;
+    }
+  }

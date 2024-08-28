@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
-import { auth } from '../FirbaseAuth/Config'; // Ensure correct path
+import { auth } from '../FirbaseAuth/Config'; 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, currentView }) {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Update the document title dynamically based on pageTitle prop
     document.title = pageTitle || 'Dashboard';
-  }, [pageTitle]); // Dependency array ensures this runs when pageTitle changes
+  }, [pageTitle]); 
 
   const handleProfileMenuToggle = () => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
@@ -34,29 +33,21 @@ function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, cur
       });
     }
   };
-
-  // Determine the display name for the avatar
   const getInitial = (str) => {
     if (str) {
       const trimmedStr = str.trim();
-      if (trimmedStr.length === 0) return 'N/A'; // Handle empty strings
+      if (trimmedStr.length === 0) return 'N/A'; 
       const firstChar = trimmedStr.charAt(0).toUpperCase();
       return /^[A-Za-z]$/.test(firstChar) ? firstChar : 'N/A';
     }
     return 'N/A';
   };
-
-  // Get the initial from either username or email
   const userInitial = getInitial(username || email || 'Guest');
-
-  // Debugging logs
   console.log('Username:', username);
   console.log('Email:', email);
   console.log('User Initial:', userInitial);
-
   return (
     <div className="custom-navbar">
-      {/* Sidebar Toggle Button for Mobile View */}
       <button
         className="custom-navbar-toggle"
         onClick={toggleSidebar}
@@ -80,15 +71,10 @@ function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, cur
       <h1 className="custom-navbar-title">
         {pageTitle || 'Dashboard'}
       </h1>
-
-      {/* Conditional Rendering Based on View */}
       {currentView === 'table' && (
         <div className="table-view">
-          {/* Render content specific to the table view */}
         </div>
       )}
-
-      {/* Navbar Actions */}
       <div className="custom-navbar-actions hidden md:flex items-center">
         <div className="relative ml-4 flex">
           <button
@@ -99,9 +85,8 @@ function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, cur
               {userInitial}
             </div>
           </button>
-          {/* Profile Menu Dropdown */}
           {isProfileMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+            <div className="absolute right-0 mt-2 w-48 bg-white border avatar-profile-custom border-gray-200 rounded-lg shadow-lg">
               <button className="block px-4 py-2 text-sm text-gray-700 w-full text-left">Profile</button>
               <button className="block px-4 py-2 text-sm text-gray-700 w-full text-left">Settings</button>
               <button 
@@ -113,8 +98,6 @@ function DashboardNavbar({ toggleSidebar, username, email, pageTitle, paths, cur
           )}
         </div>
       </div>
-
-      {/* Mobile View */}
       <div className="md:hidden flex items-center">
         <div className="relative ml-4">
           <button

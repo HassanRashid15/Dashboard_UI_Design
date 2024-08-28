@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {renderNavbar()} {/* Render the appropriate navbar */}
+      {renderNavbar()}
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -58,11 +58,10 @@ function App() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
-          {/* Add other routes here */}
         </Routes>
       </div>
       <Footer />
-      <ToastContainer /> {/* Add ToastContainer here */}
+      <ToastContainer /> 
     </div>
   );
 }

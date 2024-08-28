@@ -44,13 +44,6 @@
         width: 100%;
     }
   }
-
-
-
-
- 
- 
-
   .card-second-section-content h2{
 color: #A0AEC0;
 font-size:  0.875rem;
@@ -108,10 +101,6 @@ font-weight:700;
         display: flex;
         justify-content: center;
     }
-    /* .second-card-alignment{
-        margin-top:12px;
-        
-    } */
   }
   #chart{
     width: 100%;
@@ -124,8 +113,39 @@ font-weight:700;
         justify-content: space-between;
     }
   }
-
-
   .order-date-custom p {
     padding-left:20px;
   }
+  .content-overflow-custom {
+    max-height: 240px;
+    overflow-y: auto;
+  }
+    .content-overflow-custom {
+      scrollbar-width: none;
+  }
+  
+ 
+  
+.record-main-content-area{
+  padding: 0px 15px !important;
+}
+
+.record-form-custom{
+  padding-top: 70px !important;
+  height: 80vh !important ; 
+  overflow: auto !important;
+}
+.avatar-profile-custom{
+  z-index: 5;
+  top: 30px;
+}
+
+
+
+
+.card-second-section-content button{
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 15px;
+
+}

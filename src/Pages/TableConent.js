@@ -45,11 +45,10 @@ function TableContent() {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-lg w-full h-full" data-aos="fade-up">
+    <div className="bg-white p-4 rounded-lg table-scroll-custom shadow-lg w-full h-full" data-aos="fade-up">
       <h2 className="text-xl font-semibold mb-2 text-gray-800">Projects</h2>
       <div className="text-gray-500 mb-4">30 done this month.</div>
       
-      {/* Table Design */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead>
@@ -58,7 +57,7 @@ function TableContent() {
               <th className="py-2 text-left text-gray-700 font-semibold">Members</th>
               <th className="py-2 text-left text-gray-700 font-semibold">Completion</th>
               <th className="py-2 text-left table-status-custom text-gray-700 font-semibold">Status</th>
-              <th className="py-2 text-left"></th> {/* Empty column for the edit button */}
+              <th className="py-2 text-left"></th> 
             </tr>
           </thead>
           <tbody>
