@@ -12,6 +12,7 @@ import { auth } from './FirbaseAuth/Config.js';
 import { onAuthStateChanged } from 'firebase/auth';
 import ResetPassword from './Component/ResetPassword';
 import { ToastContainer } from 'react-toastify'; 
+import Page404 from './Pages/Page404.js';
 
 function App() {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="*" element={<Page404 />}/>
         </Routes>
       </div>
       <Footer />

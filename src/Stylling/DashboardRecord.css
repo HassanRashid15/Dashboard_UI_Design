@@ -1,3 +1,36 @@
 .record-form-custom{
-    padding: 0px 15px !important;
+    height: 80vh !important ; 
+    overflow: auto !important;
+  }
+  .record-form-custom-alignment{
+    height: 80vh;
+    overflow: auto;
+    padding: 60px 30px !important;
+  }
+  @media (max-width:639px){
+    .record-form-custom-alignment{
+        width: 76% !important;
+                margin: auto;
+  }
+}
+
+
+@media (min-width:768px) and (max-width:880px){
+    .user-info-alignment{
+     display: block !important;
+    }
+}
+@media (max-width:1023px){
+    .record-main-content-area{
+        min-height: unset !important;
+        overflow: unset !important;
+    }
+    .record-form-parent{
+        height: 100% !important;
+    }
+}
+@media (min-width:1024px){
+    .record-main-content-area{
+        padding-top:0px !important ;
+    }
 }

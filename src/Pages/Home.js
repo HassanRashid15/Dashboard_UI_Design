@@ -43,38 +43,42 @@ function Home() {
 
   return (
     <div>
-<div className="grid grid-cols-1 hero-section-parent sm:grid-cols-1 md:grid-cols-2 gap-4 items-center text-white p-8">
-  <div
-    className="flex flex-col justify-center space-y-4 mx-auto w-full p-0 hero-section-content-custom"
-    data-aos="fade-up"
-  >
-    <h2>The Password Manager for Teams</h2>
-    <p>
-      TeamPassword is the fastest, easiest, and most secure way to store and share team logins and passwords.
-    </p>
-    <div className="flex hero-section-button">
-      <a
-        href="#"
-        className="py-3 px-9 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition duration-150 ease-in-out"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        Get Started
-      </a>
-    </div>
-  </div>
-  <div
-    className="relative lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:flex lg:items-center lg:justify-center hidden md:flex justify-center w-full h-full mx-auto hero-section-image"
-    data-aos="fade-left"
-  >
-    <img
-      className="object-cover object-center w-full h-auto lg:w-2/3 lg:h-auto rounded-3xl shadow-lg hero-section-image1"
-      src={homepagehero2}
-      alt="App Screenshot"
-    />
-    <img className=' hero-section-image2 object-cover object-center w-full h-auto lg:w-1/2 lg:h-auto rounded-3xl shadow-lg absolute top-1/2 left-1/2 transform lg:-translate-x-1/3 lg:-translate-y-1/3'  src={homepagehero1}/>
-  </div>
-</div>
+    <div className="grid grid-cols-1 hero-section-parent sm:grid-cols-1 md:grid-cols-2 gap-4 items-center text-white p-8">
+        <div
+          className="flex flex-col justify-center space-y-4 mx-auto w-full p-0 hero-section-content-custom"
+          data-aos="fade-up"
+        >
+          <h2>The Password Manager for Teams</h2>
+          <p>
+            TeamPassword is the fastest, easiest, and most secure way to store and share team logins and passwords.
+          </p>
+          <div className="flex hero-section-button">
+            <a
+              href="#"
+              className="py-3 px-9 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition duration-150 ease-in-out"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+        <div
+          className="relative lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:flex lg:items-center lg:justify-center hidden md:flex justify-center w-full h-full mx-auto hero-section-image"
+          data-aos="fade-left"
+        >
+          <img
+            className="object-cover object-center w-full h-auto lg:w-2/3 lg:h-auto rounded-3xl shadow-lg hero-section-image1"
+            src={homepagehero2}
+            alt="App Screenshot"
+          />
+          <img
+            className='hero-section-image2 w-full h-auto lg:w-1/2 lg:h-auto rounded-3xl shadow-lg'
+            src={homepagehero1}
+            alt="App Screenshot"
+          />
+        </div>
+      </div>
 
 
 
@@ -132,7 +136,6 @@ function Home() {
           </h4>
         </div>
       <div className="testimonial testimonial-custom-layout text-center bg-cover bg-center py-12 relative" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80')" }}>
-  {/* Background Overlay */}
   
   <div className="absolute inset-0 bg-black opacity-50"></div> 
 

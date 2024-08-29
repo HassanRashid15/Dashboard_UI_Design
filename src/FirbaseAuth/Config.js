@@ -1,8 +1,7 @@
-// src/FirebaseAuth/Config.js
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, confirmPasswordReset } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 
-// Your Firebase configuration object
 const firebaseConfig = {
   apiKey: "AIzaSyAHTaHbvJbQGrqpuLyQGQPp0-iGInJm_tI",
   authDomain: "teampassword-90f54.firebaseapp.com",
@@ -14,10 +13,9 @@ const firebaseConfig = {
 };
 
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
-
-export { auth, googleAuthProvider, confirmPasswordReset };
-
+const database = getDatabase(app);
+// const storage = getStorage(app , 'teampassword-90f54.appspot.com');
+export { database, auth, googleAuthProvider, confirmPasswordReset };

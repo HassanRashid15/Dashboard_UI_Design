@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import DashboardSidebar from '../Component/DashboardSidebar';
 import DashboardNavbar from '../Component/DashboardNavbar';
-import DashboardTable from '../Pages/DashboardTable';
-import DashboardSetting from './../Pages/DashboardSetting';
-import DashboardContent from '../Pages/DashboardContent';
-import DashboradRecord from './../Pages/DashboradRecord.js';
-import DashboardProfile from './../Pages/DashboardProfile';
+import DashboardTable from './DashboardPages/DashboardTable.js';
+import DashboardSetting from './DashboardPages/DashboardSetting.js';
+import DashboardContent from './DashboardPages/DashboardContent.js';
+import DashboradRecord from './DashboardPages/DashboradRecord.js';
+import DashboardProfile from './DashboardPages/DashboardProfile.js';
 
 function DashboardLayout() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);

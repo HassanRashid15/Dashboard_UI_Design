@@ -216,3 +216,10 @@ Dashboard Navbar
 
 
 
+
+
+  @media (max-width:767px){
+    .nav-avatar-custom-align{
+      z-index: 33;
+    }
+  }
